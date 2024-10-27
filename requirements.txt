@@ -1,4 +1,5 @@
 streamlit
 scikit-learn
 nltk
-pickle5  # if you're using pickle for model loading
+pickle5
+
