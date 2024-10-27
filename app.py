@@ -11,7 +11,7 @@ ovr_knn = pickle.load(open('results/ovr_knn.pkl','rb'))
 tfidfd = pickle.load(open('results/tfidf.pkl','rb'))
 
 # Map category ID to category name
-category_mapping = {'Books': 0, 'Clothing & Accessories': 1, 'Electronics': 2, 'Household': 3}
+category_mapping = {0: 'Books', 1: 'Clothing & Accessories', 2: 'Electronics', 3:'Household'}
 
 def data_cleaning(text):
     
@@ -24,25 +24,26 @@ def data_cleaning(text):
 
 # web app
 def main():
-    st.title("Resume Screening App")
-    uploaded_file = st.file_uploader('Upload Resume', type=['txt','pdf'])
+    st.title("Ecomers Product Detection From Text Comment App")
+    comment_text = st.text_input("Enter Product Comment", "")
+    
+    # uploaded_file = st.file_uploader('Upload Comment as text file', type=['txt','pdf'])
 
-    if uploaded_file is not None:
-        try:
-            resume_bytes = uploaded_file.read()
-            resume_text = resume_bytes.decode('utf-8')
-        except UnicodeDecodeError:
-            # If UTF-8 decoding fails, try decoding with 'latin-1'
-            resume_text = resume_bytes.decode('latin-1')
+    # if uploaded_file is not None:
+    #     try:
+    #         resume_bytes = uploaded_file.read()
+    #         resume_text = resume_bytes.decode('utf-8')
+    #     except UnicodeDecodeError:
+    #         # If UTF-8 decoding fails, try decoding with 'latin-1'
+    #         resume_text = resume_bytes.decode('latin-1')
 
-        cleaned_resume = data_cleaning(resume_text)
-        input_features = tfidfd.transform([cleaned_resume])
-        prediction_id = ovr_knn.predict(input_features)[0]
-        st.write(prediction_id)
+    cleaned_comment_text = data_cleaning(comment_text)
+    input_features = tfidfd.transform([cleaned_comment_text])
+    prediction_id = ovr_knn.predict(input_features)[0]
 
-        category_name = category_mapping.get(prediction_id, "Unknown")
+    category_name = category_mapping.get(prediction_id, "Unknown")
 
-        st.write("Predicted Category:", category_name)
+    st.write("Predicted Category:", category_name)
 
 
 
