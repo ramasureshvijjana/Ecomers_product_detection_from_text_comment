@@ -8,15 +8,21 @@
 ## 2. Instalations and Setup:
 **Install Streamlit:** Run the following commands to uninstall and reinstall streamlit to ensure you have the latest version.
 
-> pip uninstall streamlit  
-> pip install streamlit
+```bash
+pip uninstall streamlit  
+pip install streamlit
+```
 
-**Verify Installation:** After reinstalling, verify that streamlit is installed correctly by running:
+**Verify Installation:** After reinstalling, verify that streamlit is installed correctly by running:  
 
-> streamlit --version
+```bash
+streamlit --version
+```
 
 ## 3. How to Run App:
 **Run the App with Full Path:** Run below two commands to run the app:
 
-> python -u "e:\NLP\Ecomers_product_detection_from_text_comment\app.py"  
-> python -m streamlit run e:\NLP\Ecomers_product_detection_from_text_comment\app.py
+```bash
+python -u "e:\NLP\Ecomers_product_detection_from_text_comment\app.py" 
+python -m streamlit run e:\NLP\Ecomers_product_detection_from_text_comment\app.py
+```
